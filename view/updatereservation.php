@@ -1,42 +1,41 @@
 <?php
 
-include '../controller/paiementc.php';
+include '../controller/reservationc.php';
 
 $error = "";
 
 
-$paiement = null;
+$reservation = null;
 
 // create an instance of the controller
-$paiementC = new paiementC();
+$reservationC = new reservationC();
 if (
-    isset($_POST["PrixTotal"]) &&
-    isset($_POST["Cartetype"]) &&
-    isset($_POST["CartNumber"]) &&
-    isset($_POST["Datedexpiration"])&&
-    isset($_POST["Nom"]) &&
-    isset($_POST["Cvc"]) 
+    isset($_POST["idclient"]) &&
+    isset($_POST["nbrp"]) &&
+    isset($_POST["destination"]) &&
+    isset($_POST["dateres"])&&
+    isset($_POST["prixt"]) 
+
+    
 ) {
     if (
-        !empty($_POST['PrixTotal']) &&
-        !empty($_POST['Cartetype']) &&
-        !empty($_POST['CartNumber']) &&
-        !empty($_POST['Datedexpiration'])&&
-        !empty($_POST['Nom']) &&
-        !empty($_POST['Cvc']) )
-        { 
-        $paiement = new paiement(
+        !empty($_POST['idclient']) &&
+        !empty($_POST['nbrp']) &&
+        !empty($_POST['destination']) &&
+        !empty($_POST['dateres'])&&
+        !empty($_POST['prixt']) 
+     
+    ) { 
+        $reservation = new reservation(
            
-            $_POST['PrixTotal'],
-            $_POST['Cartetype'],
-            $_POST['CartNumber'],
-            new DateTime($_POST['Datedexpiration']),
-            $_POST['Nom'], 
-            $_POST['Cvc'],
-            $_POST['idpaiement']
+            $_POST['idclient'],
+            $_POST['nbrp'],
+            $_POST['destination'],
+            new DateTime($_POST['dateres']),
+            $_POST['prixt']
         );
-        $paiementC->updatepaiement($paiement, $_POST["idpaiement"]);
-        header('Location:Listepaiement.php');
+        $reservationC->updatereservation($reservation, $_POST["idclient"]);
+        header('Location:Listereservation.php');
         } else
         $error = "Missing information";
     }
@@ -65,7 +64,7 @@ if (
             <div class="app-sidebar-wrapper">
                 <div class="app-sidebar sidebar-shadow">
                     <div class="app-header__logo">
-                        <a href="listepaiement.php" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
+                        <a href="listereservation.php" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
                             class="logo-src"></a>
                         <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                             <span class="hamburger-box">
@@ -82,14 +81,14 @@ if (
                                 <li>
                                     <a href="#">
                                         <i class="metismenu-icon pe-7s-plugin"></i>
-                                        Dachboard
+                                        eya web
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="listepaiement.php">
+                                            <a href="listereservation.php">
                                                 <i class="metismenu-icon">
-                                                </i>paiement manegement
+                                                </i>reservation
                                             </a>
                                         </li>
                                         <li>
@@ -809,66 +808,51 @@ if (
                                 <?php echo $error; ?>
                             </div>
                                  <?php
-                                 if (isset($_POST['idpaiement'])) {
-                                 $paiement = $paiementC->showpaiement($_POST['idpaiement']);
+                                 if (isset($_POST['idclient'])) {
+                                 $reservation = $reservationC->showreservation($_POST['idclient']);
 
                                 ?>
-                                                        <h5 class="card-title">Paiment Infos</h5>
+                                                        <h5 class="card-title">reservation Infos</h5>
                                                         <form id="signupForm" class="col-md-10 mx-auto" method="post"
                                                             action="" novalidate="novalidate">
 
                                                             <div class="form-group">
-                                                                <label for="idpaiement">idpaiement</label>
+                                                                <label for="idclient">id client</label>
                                                                 <div>
                                                                     <input type="text" class="form-control"
-                                                                        id="idpaiement " name="idpaiement" value="<?php echo $paiement['idpaiement']; ?>"
-                                                                        placeholder="idpaiement ">
+                                                                        id="idclient " name="idclient" value="<?php echo $reservation['idclient']; ?>"
+                                                                        placeholder="id client ">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="PrixTotal">Prix Total</label>
+                                                                <label for="PrixTotal">nombre de personne</label>
                                                                 <div>
                                                                     <input type="text" class="form-control"
-                                                                        id="PrixTotal" name="PrixTotal" value="<?php echo $paiement['PrixTotal']; ?>"
-                                                                        placeholder="PrixTotal">
+                                                                        id="nbrp" name="nbrp" value="<?php echo $reservation['nbrp']; ?>"
+                                                                        placeholder="nombre de personne">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="CartType">Cart Type</label>
+                                                                <label for="CartType">destination</label>
                                                                 <div>
                                                                     <input type="text" class="form-control"
-                                                                        id="CartType:" name="CartType:" value="<?php echo $paiement['Cartetype']; ?>"
-                                                                        placeholder="Cart Type">
+                                                                        id="destination" name="destination" value="<?php echo $reservation['destination']; ?>"
+                                                                        placeholder="destination">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="CartNumber">CartNumber</label>
-                                                                <div>
-                                                                    <input type="text" class="form-control"
-                                                                        id="CartNumber" name="CartNumber" value="<?php echo $paiement['CartNumber']; ?>"
-                                                                        placeholder="CartNumber">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="Datedexpiration">Date d'expiration</label>
+                                                                <label for="dateres">Date de reservation</label>
                                                                 <div>
                                                                     <input type="date" class="form-control"
-                                                                        id="Datedexpiration" name="Datedexpiration"value="<?php echo date('Y-m-d', strtotime($paiement['Datedexpiration'])); ?>" 
-                                                                        placeholder="Date d'expiration">
+                                                                        id="dateres" name="dateres"value="<?php echo date('Y-m-d', strtotime($reservation['dateres'])); ?>" 
+                                                                        placeholder="Date de reservation">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="Nom">Nom</label>
-                                                                <input type="text" class="form-control" id="Nom" value="<?php echo $paiement['Nom']; ?>"
-                                                                    name="Nom" placeholder="Nom">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="Cvc">Cvc</label>
-                                                                <div>
-                                                                    <input type="text" class="form-control" id="Cvc" value="<?php echo $paiement['Cvc']; ?>"
-                                                                        name="Cvc" placeholder="Cvc">
-                                                                </div>
-                                                            </div>
+                                                                <label for="prixt">prix total</label>
+                                                                <input type="text" class="form-control" id="prixt" value="<?php echo $reservation['prixt']; ?>"
+                                                                    name="prixt" placeholder="prix total">
+                                 </div>
                                                           
                                                             <div class="form-group">
                                                                 <button type="submit" class="btn btn-primary"

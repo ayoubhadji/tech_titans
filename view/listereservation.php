@@ -1,42 +1,40 @@
 <?php
-include '../controller/paiementc.php';
-$paiementC = new paiementC();
-$list = $paiementC->listpaiement();
-$error = "";
-$paiementa = null;
-$paiementCa = new paiementC();
+include '../controller/reservationc.php';
+
+$reservationC = new reservationC();
+$list = $reservationC->listreservation();
+$error = ""; 
+$reservationa = null;
+$reservationCa = new reservationC();
 if (
-    isset($_POST["PrixTotal"]) &&
-    isset($_POST["CartType:"]) &&
-    isset($_POST["CartNumber"]) &&
-    isset($_POST["Datedexpiration"])&&
-    isset($_POST["Nom"]) &&
-    isset($_POST["Cvc"]) 
+    isset($_POST["idclient"]) &&
+    isset($_POST["nbrp"]) &&
+    isset($_POST["destination"]) &&
+    isset($_POST["dateres"])&&
+    isset($_POST["prixt"]) 
 
     
 ) {
     if (
-        !empty($_POST['PrixTotal']) &&
-        !empty($_POST['CartType:']) &&
-        !empty($_POST['CartNumber']) &&
-        !empty($_POST['Datedexpiration'])&&
-        !empty($_POST['Nom']) &&
-        !empty($_POST['Cvc']) 
+        !empty($_POST['idclient']) &&
+        !empty($_POST['nbrp']) &&
+        !empty($_POST['destination']) &&
+        !empty($_POST['dateres'])&&
+        !empty($_POST['prixt']) 
      
     ) {
-        $paiementa = new paiement(
+        $reservationa = new reservation(
             
-            $_POST['PrixTotal'],
-            $_POST['CartType:'],
-            $_POST['CartNumber'],
-            new DateTime($_POST['Datedexpiration']),
-            $_POST['Nom'],
-            $_POST['Cvc'],
+            $_POST['idclient'],
+            $_POST['nbrp'],
+            $_POST['destination'],
+            new DateTime($_POST['dateres']),
+            $_POST['prixt'],
             null,
         
         );
-        $paiementCa->addpaiement($paiementa);
-        header('Location:http://localhost/sarraweb/View/Listepaiement.php');
+        $reservationCa->addreservation($reservationa);
+        header('Location:http://localhost/eyaweb/view/listereservation.php');
     } else
         $error = "Missing information";
 }
@@ -54,7 +52,7 @@ if (
     <meta name="description"
         content="These can be used with other components and elements to create stunning and unique new elements for your UIs.">
     <link rel="icon" href="favicon.ico">
-
+    <script src="./test.js"></script>
     <meta name="msapplication-tap-highlight" content="no">
     <link href="main.07a59de7b920cd76b874.css" rel="stylesheet">
 </head>
@@ -65,7 +63,7 @@ if (
             <div class="app-sidebar-wrapper">
                 <div class="app-sidebar sidebar-shadow">
                     <div class="app-header__logo">
-                        <a href="listepaiement.php" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
+                        <a href="listereservation.php" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
                             class="logo-src"></a>
                         <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                             <span class="hamburger-box">
@@ -82,26 +80,26 @@ if (
                                 <li>
                                     <a href="#">
                                         <i class="metismenu-icon pe-7s-plugin"></i>
-                                        Dachboard
+                                        eya web
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="listepaiement.php">
+                                            <a href="listereservation.php">
                                                 <i class="metismenu-icon">
-                                                </i>paiement manegement
+                                                </i>reservation
                                             </a>
                                         </li>
                                         <li>
                                             <a href="">
                                                 <i class="metismenu-icon">
-                                                </i>???????
+                                                </i>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="">
                                                 <i class="metismenu-icon">
-                                                </i>?????
+                                                </i>
                                             </a>
                                         </li>
                                     </ul>
@@ -802,58 +800,95 @@ if (
                                 <div class="tab-content">
                                     <div class="container-fluid">
                                         <div class="row">
+                                           
                                             <div class="col-md-12">
                                                 <div class="main-card mb-3 card">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">Paiment Infos</h5>
+                                                        <h5 class="card-title">reservation infos</h5>
                                                         <div id="error">
                                                             <?php echo $error; ?>
                                                          </div>
-                                                        <form id="signupForm" class="col-md-10 mx-auto" method="post"
-                                                            action="" novalidate="novalidate">
+    <script>                                                   
+    function va() {
+        var idclient = document.getElementById("idclient").value;
+        var nbrp = document.getElementById("nbrp").value;
+        var destination = document.getElementById("destination").value;
+        var dateres = document.getElementById("dateres").value;
+        var prixt = document.getElementById("prixt").value;
+
+        var numRegExp = /^\d+$/;
+        var alphaRegExp = /^[A-Za-z]+$/;
+        var dateRegExp = /^\d{4}-\d{2}-\d{2}$/;
+
+        if (!numRegExp.test(prixt)) {
+            alert("Le prix total ne doit contenir que des chiffres.");
+            return false;
+        }
+
+        if (!alphaRegExp.test(destination)) {
+            alert("La destination doit contenir uniquement des lettres alphabétiques.");
+            return false;
+        }
+
+        if (!numRegExp.test(idclient) || idclient.length !== 8) {
+            alert("L'ID client doit être une chaîne numérique de 8 chiffres.");
+            return false;
+        }
+
+        var currentDate = new Date();
+        if (dateres <= currentDate.toISOString().slice(0, 10)) {
+            alert("La date de réservation doit être supérieure à la date actuelle.");
+            return false;
+        }
+
+        if (!numRegExp.test(nbrp) || nbrp.length !== 1) {
+            alert("Le nombre de personnes doit être un entier de 1 chiffre.");
+            return false;
+        }
+
+        return true;
+    }
+</script>   
+
+<form class="col-md-10 mx-auto" action="listereservation.php" onsubmit="return va()" method="post">
+
+                                                             
                                                             <div class="form-group">
-                                                                <label for="firstname">Prix Total</label>
+                                                                <label for="firstname">Id client</label>
                                                                 <div>
                                                                     <input type="text" class="form-control"
-                                                                        id="PrixTotal" name="PrixTotal"
-                                                                        placeholder="PrixTotal">
+                                                                        id="idclient" name="idclient"
+                                                                        placeholder="Id client">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="lastname">Cart Type</label>
+                                                                <label for="lastname">nombre de personne</label>
                                                                 <div>
                                                                     <input type="text" class="form-control"
-                                                                        id="CartType:" name="CartType:"
-                                                                        placeholder="Cart Type">
+                                                                        id="nbrp" name="nbrp"
+                                                                        placeholder="nombre de personne">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="username">CartNumber</label>
+                                                                <label for="username">destination</label>
                                                                 <div>
                                                                     <input type="text" class="form-control"
-                                                                        id="CartNumber" name="CartNumber"
-                                                                        placeholder="CartNumber">
+                                                                        id="destination" name="destination"
+                                                                        placeholder="destination">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="email">Date d'expiration</label>
+                                                                <label for="email">Date de reservation</label>
                                                                 <div>
                                                                     <input type="date" class="form-control"
-                                                                        id="Datedexpiration" name="Datedexpiration"
-                                                                        placeholder="Date d'expiration">
+                                                                        id="dateres" name="dateres"
+                                                                        placeholder="Date de reservation">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="text">Nom</label>
-                                                                <input type="text" class="form-control" id="Nom"
-                                                                    name="Nom" placeholder="Nom">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="Cvc">Cvc</label>
-                                                                <div>
-                                                                    <input type="text" class="form-control" id="Cvc"
-                                                                        name="Cvc" placeholder="Cvc">
-                                                                </div>
+                                                                <label for="text">prix total</label>
+                                                                <input type="text" class="form-control" id="prixt"
+                                                                    name="prixt" placeholder="prixt">
                                                             </div>
                                                             <div class="form-group">
                                                                 <div>
@@ -878,56 +913,48 @@ if (
                                                             <table class="mb-0 table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>Id_paiement</th>
-                                                                        <th>type_carte</th>
-                                                                        <th>num_carte</th>
-                                                                        <th>Datedexpiration</th>
-                                                                        <th>Nom</th>
-                                                                        <th>cvc</th>
-                                                                        <th>PrixTotal</th>                                              
+                                                                        <th>idclient</th>
+                                                                        <th>nbrp</th>
+                                                                        <th>destination</th>
+                                                                        <th>dateres</th>
+                                                                        <th>prixt</th>                                             
                                                                         <th>Update</th>
                                                                         <th>Delete</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <?php
                                           
-                                          foreach ($list as $paiement) {
+                                          foreach ($list as $reservation) {
                                          ?>
                              <tr>
                                  <td>
-                                     <?= $paiement['idpaiement']; ?>
+                                     <?= $reservation['idclient']; ?>
                                  </td>
                                  <td>
-                                     <?= $paiement['Cartetype']; ?>
+                                     <?= $reservation['nbrp']; ?>
                                  </td>
                                  <td>
-                                     <?= $paiement['CartNumber']; ?>
+                                     <?= $reservation['destination']; ?>
                                  </td>
                                  <td>
-                                     <?= $paiement['Datedexpiration']; ?>
+                                     <?= $reservation['dateres']; ?>
                                  </td>
                                  <td>
-                                     <?= $paiement['Nom']; ?>
-                                 </td>
-                                 <td>
-                                     <?= $paiement['Cvc']; ?>
-                                 </td>
-                                 <td>
-                                     <?= $paiement['PrixTotal']; ?>
+                                     <?= $reservation['prixt']; ?>
                                  </td>
                                 
                                  <td >
-                                     <form method="POST" action="updatepaiement.php">
+                                     <form method="POST" action="updatereservation.php">
                                          <div class="container py-2">
                                              <button class="btn btn-info" type="submit" name="update"
                                                  value="update">Update</button>
-                                             <input type="hidden" value=<?PHP echo $paiement['idpaiement']; ?>
-                                             name="idpaiement">
+                                             <input type="hidden" value=<?PHP echo $reservation['idclient']; ?>
+                                             name="idclient">
                                      </form>
                                  </td>
                                  <td>
                                      <form method="POST"
-                                         action="deletepaiement.php?idpaiement=<?php echo $paiement['idpaiement']; ?>">
+                                         action="deletereservation.php?idclient=<?php echo $reservation['idclient']; ?>">
                                          <div class="container py-2">
                                              <button class="btn btn-danger" type="submit" name="Delete"
                                                  value="Delete">Delete</a>
