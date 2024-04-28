@@ -1,22 +1,22 @@
 <?php
 // Include the necessary files
-include 'C:\xampp\htdocs\sarra\famms-1.0.0\facture\controller\paiementC.php';
+include 'C:\xampp\htdocs\sarra\famms-1.0.0\facture\controller\factureC.php';
 
 // Create an instance of PaiementController
-$paiementC = new paiementC();
+$factureC = new factureC();
 
 // Check if the required parameter is provided
-if(isset($_GET["paiement_id"])) {
+if(isset($_GET["fact_id"])) {
     // Get the value from the URL parameter
-    $paiementId = $_GET["paiement_id"];
+    $fId = $_GET["fact_id"];
     
     // Delete the paiement
-    $result = $paiementC->deletePaiement($paiementId);
+    $result = $factureC->deleteFacture($fId);
     
     // Check if the deletion was successful
     if($result !== false) {
         // Redirect to the desired page
-        header("Location: list_pays.php");
+        header("Location: list-facts.php");
         exit(); // Exit after redirection
     } else {
         // Handle the case where deletion failed

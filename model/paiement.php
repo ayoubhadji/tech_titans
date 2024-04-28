@@ -1,99 +1,86 @@
 <?php
-class paiement {
-    private ?string $Nom = null;
-    private ?string $CartNumber=null;
-    private ?float $PrixTotal=null;
-    private ?string $Cartetype=null;
-    private ?int $Cvc=null;
-    private ?int $idpaiement =null;
-    private ?DateTime $Datedexpiration=null;
+class Paiement {
+    private ?int $id;
+    private ?int $reservation_id;
+    private ?float $amount;
+    private ?string $payment_date;
+    private ?string $card_type;
+    private ?string $card_number;
+    private ?string $expiry_date;
+    private ?string $cvc;
 
-    
-
-    public function __construct( $PrixTotal, $Cartetype, $CartNumber, $Datedexpiration,$Nom,$Cvc,$idpaiement =null )
-    {
-        $this->PrixTotal = $PrixTotal;
-        $this->Cartetype = $Cartetype;
-        $this->CartNumber = $CartNumber;
-        $this->Datedexpiration = $Datedexpiration;
-        $this->Nom = $Nom;
-        $this->Cvc = $Cvc;
-        $this->idpaiement = $idpaiement;
+    public function __construct(?int $reservation_id, ?float $amount, ?string $payment_date, ?string $card_type, ?string $card_number, ?string $expiry_date, ?string $cvc) {
+        $this->reservation_id = $reservation_id;
+        $this->amount = $amount;
+        $this->payment_date = $payment_date;
+        $this->card_type = $card_type;
+        $this->card_number = $card_number;
+        $this->expiry_date = $expiry_date;
+        $this->cvc = $cvc;
     }
 
-
-    public function getPrixTotal()
-    {
-        return $this->PrixTotal;
-    }
-    public function setPrixTotal($PrixTotal)
-    {
-        $this->PrixTotal = $PrixTotal;
-
-        return $this;
+    public function getId(): ?int {
+        return $this->id;
     }
 
-    public function getCartetype()
-    {
-        return $this->Cartetype;
+    public function setId(?int $id): void {
+        $this->id = $id;
     }
-    public function setCartetype($Cartetype)
-    {
-        $this->Cartetype = $Cartetype;
 
-        return $this;
+    public function getReservationId(): ?int {
+        return $this->reservation_id;
     }
-    public function getCartNumber()
-    {
-        return $this->CartNumber;
-    }
-    public function setCartNumber($CartNumber)
-    {
-        $this->CartNumber = $CartNumber;
 
-        return $this;
+    public function setReservationId(?int $reservation_id): void {
+        $this->reservation_id = $reservation_id;
     }
-    public function getDatedexpiration()
-    {
-        return $this->Datedexpiration;
-    }
-    public function setDatedexpiration($Datedexpiration)
-    {
-        $this->Datedexpiration = $Datedexpiration;
 
-        return $this;
+    public function getAmount(): ?float {
+        return $this->amount;
     }
-    public function getNom()
-    {
-        return $this->Nom;
-    }
-    public function setNom($Nom)
-    {
-        $this->Nom = $Nom;
 
-        return $this;
+    public function setAmount(?float $amount): void {
+        $this->amount = $amount;
     }
-    public function getCvc()
-    {
-        return $this->Cvc;
-    }
-    public function setCvc($Cvc)
-    {
-        $this->Cvc = $Cvc;
 
-        return $this;
-        
+    public function getPaymentDate(): ?string {
+        return $this->payment_date;
     }
-    public function getidpaiement()
-    {
-        return $this->idpaiement;
-    }
-    public function setidpaiement($idpaiement)
-    {
-        $this->idpaiement = $idpaiement;
 
-        return $this;
-        
+    public function setPaymentDate(?string $payment_date): void {
+        $this->payment_date = $payment_date;
+    }
+
+    public function getCardType(): ?string {
+        return $this->card_type;
+    }
+
+    public function setCardType(?string $card_type): void {
+        $this->card_type = $card_type;
+    }
+
+    public function getCardNumber(): ?string {
+        return $this->card_number;
+    }
+
+    public function setCardNumber(?string $card_number): void {
+        $this->card_number = $card_number;
+    }
+
+    public function getExpiryDate(): ?string {
+        return $this->expiry_date;
+    }
+
+    public function setExpiryDate(?string $expiry_date): void {
+        $this->expiry_date = $expiry_date;
+    }
+
+    public function getCvc(): ?string {
+        return $this->cvc;
+    }
+
+    public function setCvc(?string $cvc): void {
+        $this->cvc = $cvc;
     }
 }
 ?>
