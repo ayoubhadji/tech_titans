@@ -3,7 +3,44 @@ include '../config.php';
 include '../Model/reservation.php';
 
 class reservationC
-{
+
+    { public function getreservationStatistics()
+        {
+            $sql = "SELECT destination, COUNT(*) AS count FROM reservation GROUP BY destination";
+            $db = config::getConnexion();
+            try {
+                $liste = $db->query($sql);
+                $statistics = $liste->fetchAll(PDO::FETCH_ASSOC);
+                $reservationStatistics = [];
+                foreach ($statistics as $stat) {
+                    $reservationStatistics[$stat['destination']] = $stat['count'];
+                }
+                return $reservationStatistics;
+            } catch (Exception $e) {
+                die('Error:' . $e->getMessage());
+            }
+        }
+       /* function getReservationsSortedByDate()
+        {
+            $sql = "SELECT * FROM reservation ORDER BY dateres ASC";
+            
+            $db = config::getConnexion();
+            
+            try {
+                // Exécution de la requête
+                $liste = $db->query($sql);
+                
+                // Récupération des résultats sous forme de tableau associatif
+                $reservations = $liste->fetchAll(PDO::FETCH_ASSOC);
+                
+                // Retourner les réservations triées par date de réservation
+                return $reservations;
+            } catch (Exception $e) {
+                die('Error:' . $e->getMessage());
+            }
+        }
+    }*/
+        
     public function listreservation()
     {
         $sql = "SELECT * FROM reservation";
@@ -29,6 +66,23 @@ class reservationC
             die('Error:' . $e->getMessage());
         }
     }
+    /* function deletereservation($id) {
+        $db = config::getConnexion();
+           try {
+      
+       $deletevoyagee= $db->prepare('DELETE r FROM `voyagee` r INNER JOIN `reservation` rec ON r.idclient = rec.id WHERE rec.id = :id');
+       $deletevoyagee->execute(['id' => $id]);
+
+      
+       $deletereservation = $db->prepare('DELETE FROM `reservation` WHERE `id` = :id');
+       $deletereservation->execute(['id' => $id]);
+
+              }
+            catch (PDOException $e) {
+       echo "Erreur : " . $e->getMessage();
+
+                                      }
+                                   }*/
 
     function addreservation($reservation)
     {
@@ -95,5 +149,5 @@ class reservationC
         }
     }
 
-    }
+}
 ?>

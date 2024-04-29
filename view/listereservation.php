@@ -52,7 +52,7 @@ if (
     <meta name="description"
         content="These can be used with other components and elements to create stunning and unique new elements for your UIs.">
     <link rel="icon" href="favicon.ico">
-    <script src="./test.js"></script>
+    <script src="./controlsais.js"></script>
     <meta name="msapplication-tap-highlight" content="no">
     <link href="main.07a59de7b920cd76b874.css" rel="stylesheet">
 </head>
@@ -63,8 +63,9 @@ if (
             <div class="app-sidebar-wrapper">
                 <div class="app-sidebar sidebar-shadow">
                     <div class="app-header__logo">
-                        <a href="listereservation.php" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
-                            class="logo-src"></a>
+                        <a href="listereservation.php" data-toggle="tooltip" data-placement="bottom" title="explore beyond"
+                            class="logo-inverse"><img src="assets/images/logo-inverse.png" style="float: left; width: 100px; height: auto;">
+</a>
                         <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
@@ -80,7 +81,7 @@ if (
                                 <li>
                                     <a href="#">
                                         <i class="metismenu-icon pe-7s-plugin"></i>
-                                        eya web
+                                        gestion de reservation
                                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                     </a>
                                     <ul>
@@ -91,15 +92,9 @@ if (
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="listevoyagee.php">
                                                 <i class="metismenu-icon">
-                                                </i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="metismenu-icon">
-                                                </i>
+                                                </i>voyagee
                                             </a>
                                         </li>
                                     </ul>
@@ -114,7 +109,7 @@ if (
                 <div class="app-main__inner">
                     <div class="header-mobile-wrapper">
                         <div class="app-header__logo">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="KeroUI Admin Template"
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="explore beyond"
                                 class="logo-src"></a>
                             <button type="button" class="hamburger hamburger--elastic mobile-toggle-sidebar-nav">
                                 <span class="hamburger-box">
@@ -325,80 +320,6 @@ if (
                                                                                     class="vertical-timeline-element-content bounce-in">
                                                                                     <h4 class="timeline-title">Something
                                                                                         not important
-                                                                                        <div
-                                                                                            class="avatar-wrapper mt-2 avatar-wrapper-overlap">
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/1.jpg"
-                                                                                                        alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/2.jpg"
-                                                                                                        alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/3.jpg"
-                                                                                                        alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/4.jpg"
-                                                                                                        alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/5.jpg"
-                                                                                                        alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/9.jpg"
-                                                                                                        alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/7.jpg"
-                                                                                                        alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/8.jpg"
-                                                                                                        alt>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="avatar-icon-wrapper avatar-icon-sm avatar-icon-add">
-                                                                                                <div
-                                                                                                    class="avatar-icon">
-                                                                                                    <i>+</i>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
                                                                                     </h4>
                                                                                     <span
                                                                                         class="vertical-timeline-element-date"></span>
@@ -677,7 +598,7 @@ if (
                                             <div class="btn-group">
                                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                     class="p-0 btn">
-                                                    <img width="42" class="rounded" src="assets/images/avatars/3.jpg"
+                                                    <img width="42" class="rounded" src="assets/images/lala/3.jpg"
                                                         alt>
                                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                                 </a>
@@ -693,10 +614,10 @@ if (
                                                                     <div class="widget-content-wrapper">
                                                                         <div class="widget-content-left mr-3">
                                                                             <img width="42" class="rounded-circle"
-                                                                                src="assets/images/avatars/3.jpg" alt>
+                                                                                src="assets/images/lala/3.jpg" alt>
                                                                         </div>
                                                                         <div class="widget-content-left">
-                                                                            <div class="widget-heading">Minnie Betts
+                                                                            <div class="widget-heading">eya dabbaghi
                                                                             </div>
                                                                             <div class="widget-subheading opacity-8">A
                                                                                 short profile description
@@ -804,6 +725,17 @@ if (
                                             <div class="col-md-12">
                                                 <div class="main-card mb-3 card">
                                                     <div class="card-body">
+                                                        <style > /* Style du titre h2 */
+h5 {
+    font-size: 30px; /* Taille de la police */
+    color: #333; /* Couleur du texte */
+    margin: 20px 0; /* Marge supérieure et inférieure */
+    text-align: center; /* Centrage horizontal */
+    font-weight: bold; /* Gras */
+    text-transform: uppercase; /* Convertit le texte en majuscules */
+    letter-spacing: 2px; /* Espacement entre les lettres */
+}</style>
+
                                                         <h5 class="card-title">reservation infos</h5>
                                                         <div id="error">
                                                             <?php echo $error; ?>
@@ -852,12 +784,13 @@ if (
 
 <form class="col-md-10 mx-auto" action="listereservation.php" onsubmit="return va()" method="post">
 
+
                                                              
                                                             <div class="form-group">
                                                                 <label for="firstname">Id client</label>
                                                                 <div>
                                                                     <input type="text" class="form-control"
-                                                                        id="idclient" name="idclient"
+                                                                        id="idclient" name="idclient" 
                                                                         placeholder="Id client">
                                                                 </div>
                                                             </div>
@@ -873,7 +806,7 @@ if (
                                                                 <label for="username">destination</label>
                                                                 <div>
                                                                     <input type="text" class="form-control"
-                                                                        id="destination" name="destination"
+                                                                        id="destination" name="destination" 
                                                                         placeholder="destination">
                                                                 </div>
                                                             </div>
@@ -881,27 +814,51 @@ if (
                                                                 <label for="email">Date de reservation</label>
                                                                 <div>
                                                                     <input type="date" class="form-control"
-                                                                        id="dateres" name="dateres"
+                                                                        id="dateres" name="dateres" 
                                                                         placeholder="Date de reservation">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="text">prix total</label>
-                                                                <input type="text" class="form-control" id="prixt"
+                                                                <input type="text" class="form-control" id="prixt" 
                                                                     name="prixt" placeholder="prixt">
                                                             </div>
-                                                            <div class="form-group">
-                                                                <div>
+                                                            <div class="row">
+                                                            <div class="button-container">
+                                                                <style >.button-container {
+  display: flex; /* Utilisation de Flexbox */
+  justify-content: space-between; /* Espacement égal entre les éléments */
+}</style>
 
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <button type="submit" class="btn btn-primary"
-                                                                    name="submit" value="submit">submit
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                        <br>
+  <div class="col-md-3">
+    <form method="post" action="submit.php">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-3">
+    <form method="post" action="recherche.php">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-3">
+    <form method="post" action="stat.php">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Stat</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-3">
+    <form method="post" action="tri.php">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">afficher</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 
                                                     </div>
@@ -920,6 +877,7 @@ if (
                                                                         <th>prixt</th>                                             
                                                                         <th>Update</th>
                                                                         <th>Delete</th>
+
                                                                     </tr>
                                                                 </thead>
                                                                 <?php
@@ -960,7 +918,7 @@ if (
                                                  value="Delete">Delete</a>
                                      </form>
                                  </td>
-
+                              
                                  <?php
                                        }
                                      ?>
