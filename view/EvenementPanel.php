@@ -51,6 +51,8 @@ if (isset($_POST["nom"]) && isset($_POST["content"]) && isset($_POST["adresse"])
 <body>
         <!----- end of aside -->
         <main >
+        <a href="chatbot.php" class="btn">Aller au Chatbot</a> <!-- Add this line -->
+
         <div class="container">
         <form id="myForm" action="" method="POST" enctype="multipart/form-data">
             <h2 style="text-align: center;">Add New Evenement</h2>
