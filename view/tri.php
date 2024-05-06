@@ -6,7 +6,37 @@
 
     
 </head>
-<style>@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+<style>
+body {
+    background-color: #DC143C;/* Rouge clair pour l'arrière-plan */
+    margin: 0; /* Annuler les marges par défaut du corps */
+    padding: 0; /* Annuler les rembourrages par défaut du corps */
+    display: flex; /* Utilisation de Flexbox pour centrer le contenu */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    min-height: 100vh; /* Hauteur minimale de la vue */
+}
+
+table {
+    background-color: transparent; /* Arrière-plan transparent pour le tableau */
+    color: white; /* Textes en blanc */
+    border-collapse: collapse; /* Fusionner les bordures de cellules */
+    width: 80%; /* Largeur du tableau */
+    max-width: 1200px; /* Largeur maximale du tableau */
+    border: 2px solid black; /* Bordure noire */
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black; /* Bordure des cellules */
+}
+
+
+
+</style>
+
+<!--style>@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -126,7 +156,7 @@ body {
   color: #fff;
   text-decoration: none;
 }
-</style>
+</style-->
 <body>
 <!--ring div starts here-->
 <div class="ring">
