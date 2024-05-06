@@ -4,24 +4,27 @@ class user
 {
     private ?int $iduser = null;
     private ?string $nom = null;
-    private ?string $prenom=null;
-    private ?string $email=null;
-    private ?string $code=null;
-    private ?string $adresse=null;
-    private ?string $numero=null;
+    private ?string $prenom = null;
+    private ?string $email = null;
+    private ?string $code = null;
+    private ?string $adresse = null;
+    private ?string $numero = null;
+    private ?string $rol = null;
     
 
-    public function __construct( $iduser=null , $nom, $prenom, $email,$code,$adresse,$numero )
+    public function __construct($iduser = null, $nom, $prenom, $email, $code, $adresse, $numero, $rol)
     {
         $this->iduser = (int) $iduser;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->email = $email;
-        $this->code= $code;
+        $this->code = $code;
         $this->adresse = $adresse;
         $this->numero = $numero;
+        $this->rol = $rol;
     }
 
+    // Getters and setters...
 
     public function getiduser()
     {
@@ -90,6 +93,16 @@ class user
 
         return $this;
         
+    }
+   
+    public function getrol()
+    {
+        return $this->rol;
+    }
+    public function setrol($rol)
+    {
+        $this->rol = $rol;
+        return $this;
     }
 }
 ?>

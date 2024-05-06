@@ -13,7 +13,9 @@ if (
     isset($_POST["email"]) &&
     isset($_POST["code"])&&
     isset($_POST["adresse"]) &&
-    isset($_POST["numero"]) )
+    isset($_POST["numero"]) &&
+    isset($_POST["role"])
+    )
 
 {
     if (
@@ -32,7 +34,8 @@ if (
             $_POST['email'],
             $_POST['code'],
             $_POST['adresse'],
-            $_POST['numero']
+            $_POST['numero'],
+            $_POST['role']
             
         );
 
@@ -51,67 +54,80 @@ if (
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Display</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ff5f5f; /* Red background color */
+        color: white;
+        margin: 0;
+        padding: 0;
+    }
 
-        a {
-            display: inline-block;
-            margin-bottom: 10px;
-        }
+    a {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: #007bff; /* Blue link color */
+        text-decoration: none;
+    }
 
-        hr {
-            margin: 20px 0;
-        }
+    a:hover {
+        color: #0056b3; /* Darker blue on hover */
+    }
 
-        #error {
-            color: red;
-            margin-bottom: 10px;
-        }
+    hr {
+        margin: 20px 0;
+        border-color: #555; /* Dark gray border color */
+    }
 
-        .registration {
-            width: 50%;
-            margin: 0 auto;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    #error {
+        color: red;
+        margin-bottom: 10px;
+    }
 
-        .registration header {
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .registration {
+        width: 50%;
+        margin: 20px auto;
+        background-color: black; /* Black background color */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .registration input[type="text"],
-        .registration input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+    .registration header {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        .registration input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
+    .registration input[type="text"],
+    .registration input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #fff; /* White border */
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #222; /* Dark background color */
+        color: white;
+    }
 
-        .registration input[type="submit"]:hover {
-            background-color: #45a049;
-        }
+    .registration input[type="submit"] {
+        background-color: #dc3545; /* Red button color */
+        color: white;
+        cursor: pointer;
+    }
 
-        label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
-    </style>
+    .registration input[type="submit"]:hover {
+        background-color: #c82333; /* Darker red on hover */
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+        color: white;
+    }
+</style>
+
 </head>
 
 <body>
@@ -138,6 +154,7 @@ if (
             <input type="text" name="code" id="code" placeholder="Enter your code" value="<?php echo $user['code']; ?>">
             <input type="text" name="adresse" id="adresse" placeholder="Enter your adresse" value="<?php echo $user['adresse']; ?>">
             <input type="text" name="numero" id="numero" placeholder="Enter your numero" value="<?php echo $user['numero']; ?>">
+            <input type="text" name="role" id="role" placeholder="role" readonly value="<?php echo $user['rol']; ?>">
             <input type="submit" value="Update">
         </form>
         <script>

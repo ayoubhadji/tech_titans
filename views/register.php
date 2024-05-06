@@ -4,29 +4,26 @@ include '../model/user.php';
 
 $error = "";
 
-
 $user = null;
 
-
 $userc = new userC();
+
 if (
     isset($_POST["nom"]) &&
     isset($_POST["prenom"]) &&
     isset($_POST["email"]) &&
-    isset($_POST["code"])&&
+    isset($_POST["code"]) &&
     isset($_POST["adresse"]) &&
-    isset($_POST["numero"]) 
-     )
-
-{
+    isset($_POST["numero"]) &&
+    isset($_POST["role"]) // Assurez-vous que le champ de rôle est également vérifié
+) {
     if (
         !empty($_POST['nom']) &&
         !empty($_POST['prenom']) &&
         !empty($_POST['email']) &&
-        !empty($_POST['code'])&&
+        !empty($_POST['code']) &&
         !empty($_POST['adresse']) &&
-        !empty($_POST['numero']) 
-       
+        !empty($_POST['numero'])
     ) {
         $user = new user(
             null,
@@ -35,16 +32,19 @@ if (
             $_POST['email'],
             $_POST['code'],
             $_POST['adresse'],
-            $_POST['numero']
-            
+            $_POST['numero'],
+            $_POST['role'] // Utilisez directement le rôle fourni dans le formulaire
         );
-        $userc->adduser($user);
-        header('Location:listuser.php');
-    } else
+
+        // Ajout de l'utilisateur
+        if ($userc->adduser($user)) {
+            header('Location: login.php');
+            exit(); // Assure que le script s'arrête ici après la redirection
+        } 
+    } else {
         $error = "Missing information";
+    }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -62,9 +62,7 @@ if (
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -88,50 +86,41 @@ if (
                             <form action="" method="POST" onsubmit="return va()">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" name="nom" id="nom"
-                                            placeholder="First Name">
+                                        <input type="text" class="form-control form-control-user" name="nom" id="nom" placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="prenom" id="prenom"
-                                            placeholder="Last Name">
+                                        <input type="text" class="form-control form-control-user" name="prenom" id="prenom" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" name="email" id="email"
-                                        placeholder="Email Address">
+                                    <input type="email" class="form-control form-control-user" name="email" id="email" placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                        name="code" id="code" placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" name="code" id="code" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                        name="code" id="code" placeholder="Repeat Password">
+                                        <input type="password" class="form-control form-control-user" name="code2" id="code2" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" class="form-control form-control-user" name="adresse" id="adresse"
-                                                placeholder="adresse">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control form-control-user" name="numero" id="numero"
-                                                placeholder="numero">
-                                        </div>
-                                        
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="adresse" id="adresse" placeholder="adresse">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" name="numero" id="numero" placeholder="numero">
+                                    </div>
                                 </div>
-                                <td><input type="submit" value="Register Account" class="btn btn-primary btn-user btn-block"></td>
-                                
+                                <input type="hidden" name="role" value="user"> <!-- Champ caché pour le rôle -->
+                                <input type="submit" value="Register Account" class="btn btn-primary btn-user btn-block">
                                 <hr>
-                               
                             </form>
                             <hr>
                             <div class="text-center">
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="login.php">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

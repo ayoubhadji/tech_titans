@@ -1,5 +1,5 @@
 <?php
-require_once('../config.php');
+include '../config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -11,10 +11,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute(['email' => $email, 'code' => $code]);
         $user = $stmt->fetch();
 
+
         if ($user) {
-            // Credentials are correct
-            header('Location: bac.html');
-            exit(); // Make sure to stop script execution after redirection
+            if ($user['rol'] === 'user') {
+                // User role, redirect to listuser.php
+                header('Location: listuser.php');
+                exit();
+            } elseif ($user['rol'] === 'admin') {
+                // Admin role, redirect to bac.html
+                header('Location: bacadmin.php');
+                exit();
+            } 
         } else {
             // Credentials are incorrect
             header('Location: error.php');

@@ -1,50 +1,63 @@
 <?php
-include "C:/xampp/htdocs/projetvoyage/config.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-ini_set('SMTP', 'smtp.esprit.com');
-ini_set('smtp_port', 587); 
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+include '../config.php';
+include '../model/user.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if email is provided
-    if (!empty($_POST["email"])) {
-        $email = $_POST['email'];
+if (isset($_POST["email"])) {
+    $email = $_POST["email"];
+    $pdo = config::getConnexion();
 
-        $pdo = config::getConnexion();
+    try {
+        // Check if the email exists in the database
+        $stmt = $pdo->prepare("SELECT * FROM user WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
 
-        $query = "SELECT code FROM user WHERE email = :email";
-        $statement = $pdo->prepare($query);
-        $statement->bindParam(':email', $email);
-        $statement->execute();
-        $row = $statement->fetch();
-
-        // Check if a row is returned
-        if ($row) {
-            $code = $row['code'];
-
-            // Send the code to the user's email
-            $to = $email;
-            $subject = "Password Reset Code";
-            $message = "Hello,\r\n\r\nWe received your request. Your password reset code is: $code";
-            $headers = "From: haji.ayoub@esprit.tn";
-
-            if (mail($to, $subject, $message, $headers)) {
-                // Email sent successfully
-                echo "A password reset code has been sent to your email.";
-            } else {
-                // Failed to send email
-                echo "Failed to send password reset code. Please try again later.";
-            }
+        if ($user) {
+            $name = $user['prenom']; // Assuming 'prenom' is the column for the user's first name
+            $code = $user['code'];   // Assuming 'code' is the column for the reset code
+            
+            // Send email
+            sendResetEmail($name, $email, $code);
+            
+            echo 'Reset code has been sent to your email.';
         } else {
-            // User not found in the database
-            echo "No user found with this email address.";
+            echo 'Email not found in the database.';
         }
-    } else {
-        // Email is not provided
-        echo "Please provide your email address.";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
-} else {
-    // Redirect to the forgot password page if accessed directly
-    header("Location: forgot-password.html");
-    exit;
+}
+
+function sendResetEmail($name, $email, $code) {
+    $mail = new PHPMailer(true);
+
+    try {
+        // Mailer configuration
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'hadji.ayoub2003@gmail.com';
+        $mail->Password   = 'lxmv qtfw yqnn tlqm';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port       = 465;
+
+        // Email content
+        $mail->setFrom('hadji.ayoub2003@gmail.com', 'explore beyond');
+        $mail->addAddress($email, $name);
+        $mail->isHTML(true);
+        $mail->Subject = 'Password Reset Code';
+        $mail->Body    = "Hello $name,<br><br>Your reset code is: $code";
+
+        // Send the email
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
 }
 ?>

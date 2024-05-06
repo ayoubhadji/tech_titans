@@ -31,25 +31,25 @@ class userc
         }
     }
     function adduser($user)
-    {
-        $sql = "INSERT INTO user  
-        VALUES (null, :nom,:prenom,:email,:code,:adresse,:numero)";
-        $db = config::getConnexion();
-        try {
-            $query = $db->prepare($sql);
-            $query->execute([
-                
-                'nom' => $user->getnom(),
-                'prenom' => $user->getprenom(),
-                'email' => $user->getemail(),
-                'code' => $user->getcode(),
-                'adresse' => $user->getadresse(),
-                'numero' => $user->getnumero()
-            ]);
-        } catch (Exception $e) {
-            echo 'Error: ' . $e->getMessage();
-        }
+{
+    $sql = "INSERT INTO user  
+    VALUES (null, :nom, :prenom, :email, :code, :adresse, :numero, :rol)";
+    $db = config::getConnexion();
+    try {
+        $query = $db->prepare($sql);
+        $query->execute([
+            'nom' => $user->getnom(),
+            'prenom' => $user->getprenom(),
+            'email' => $user->getemail(),
+            'code' => $user->getcode(),
+            'adresse' => $user->getadresse(),
+            'numero' => $user->getnumero(),
+            'rol' => $user->getrol() 
+        ]);
+    } catch (Exception $e) {
+        echo 'Error: ' . $e->getMessage();
     }
+}
 
     function showuser($id)
     {
@@ -90,7 +90,8 @@ class userc
                     email= :email,
                     code = :code,
                     adresse = :adresse,
-                    numero = :numero
+                    numero = :numero,
+                    rol = :rol
                    
                 WHERE iduser= :iduser'
             );
@@ -102,12 +103,14 @@ class userc
                 'email' => $user->getemail(),
                 'code' => $user->getcode(),
                 'adresse' => $user->getadresse(),
-                'numero' => $user->getnumero()
+                'numero' => $user->getnumero(),
+                'rol' => $user->getrol()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
             $e->getMessage();
         }
     }
+    
 }
 ?>
