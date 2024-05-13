@@ -1,0 +1,74 @@
+/* Styles pour la page des articles sur les ODD */
+header {
+    background-color: #c61527;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+main {
+    padding: 20px;
+}
+
+.article-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Espacement égal entre les colonnes */
+}
+
+.article-wrapper article {
+    width: 48%; /* Réduisez la largeur pour permettre à deux articles de tenir côte à côte avec un petit espace entre eux */
+    margin-bottom: 20px; /* Espace en bas de chaque article */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    position: relative; /* Position relative pour les éléments enfants absolus */
+}
+
+.article-wrapper img {
+    max-width: 100%; /* Limitez la largeur de l'image à 100% de la largeur de son conteneur */
+    height: auto; /* Laissez la hauteur ajustée automatiquement pour maintenir les proportions */
+    border-radius: 5px;
+}
+
+.article-wrapper h2 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.article-wrapper button {
+    display: block;
+    background-color: #ff001e;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Transition fluide pour le changement de couleur de fond */
+    margin-bottom: 10px; /* Ajout de marge en bas pour séparer du paragraphe */
+    cursor: pointer; /* Curseur pointer pour indiquer que c'est un élément cliquable */
+}
+
+.article-wrapper button:hover {
+    background-color: #b30000;
+}
+
+.article-wrapper .description {
+    display: none; /* Cacher initialement toutes les descriptions */
+    background-color: rgba(255, 255, 255, 0.9); /* Couleur de fond de la description */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: calc(100% - 40px); /* Largeur égale à celle des articles */
+    max-height: calc(100% - 40px); /* Hauteur maximale pour ne pas dépasser la taille de l'image */
+    overflow-y: auto; /* Activer le défilement vertical si nécessaire */
+    bottom: 0; /* Aligner le bas de la description */
+}
+
+.article-wrapper article:hover .description {
+    display: block; /* Afficher la description au survol */
+}

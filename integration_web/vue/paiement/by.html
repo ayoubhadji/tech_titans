@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fin de la visite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Empêche le défilement de la page */
+        }
+
+        .navbar {
+            background-color: #FF0000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .navbar img {
+            max-height: 50px;
+            margin-right: 10px;
+        }
+
+        .navbar h1 {
+            font-size: 1.5em;
+            color: #FFF;
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            background: url('by.jpeg') center center/cover no-repeat;
+
+            animation: backgroundAnimation 20s linear infinite;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+       
+
+
+p {
+    font-size: 1.2em;
+    color: #f6f3f3; /* Couleur de texte brillante */
+    line-height: 1.6;
+    margin-bottom: 40px;
+    animation: shine 2s infinite alternate; /* Animation "shine" */
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #f6f3f3, 0 0 30px #f6f3f3, 0 0 40px #f6f3f3, 0 0 50px #f6f3f3, 0 0 75px #f6f3f3; /* Effet de brillance */
+}
+
+@keyframes shine {
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #f6f3f3, 0 0 30px #f6f3f3, 0 0 40px #f6f3f3, 0 0 50px #f6f3f3, 0 0 75px #f6f3f3, 0 0 100px #f6f3f3; /* Effet de brillance */
+    }
+}
+
+        .btn-get-started {
+            background-color: #FF0000;
+            color: #FFF;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-get-started:hover {
+            background-color: #CC0000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <img src="logo.png" alt="Logo">
+    <h1>Explore Beyond</h1>
+</div>
+
+<div class="container">
+    <div class="content">
+        <h1>Merci de votre visite !</h1>
+        <p>Nous espérons que votre expérience sur notre site a été agréable et instructive.</p>
+        <a href="#" class="btn-get-started">Découvrir davantage</a>
+    </div>
+</div>
+
+</body>
+</html>

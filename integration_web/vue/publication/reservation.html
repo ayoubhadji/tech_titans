@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réserver</title>
+    <link rel="stylesheet" href="style_reservation.css"> <!-- Assurez-vous d'ajouter un lien vers votre fichier CSS -->
+</head>
+<body>
+    <header>
+        <h1>Réserver</h1>
+    </header>
+    <main>
+        <form action="submit_reservation.php" method="post">
+            <label for="hotel">Choix d'hôtel (4/5 étoiles)</label>
+            <select id="hotel" name="hotel">
+                <option value="4">4 étoiles</option>
+                <option value="5">5 étoiles</option>
+            </select>
+
+            <label for="nbj">Nombre de jours</label>
+            <input type="number" id="nbj" name="nbj" min="1" max="30">
+
+            <label for="nbp">Nombre de personnes</label>
+            <input type="number" id="nbp" name="nbp" min="1" max="10">
+
+            <input type="submit" value="Réserver">
+        </form>
+    </main>
+    <footer>
+        <!-- Pied de page -->
+    </footer>
+</body>
+</html>
